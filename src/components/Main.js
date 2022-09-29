@@ -11,7 +11,6 @@ const Main = () => {
       setMovies(res.data.results);
     });
   }, []);
-  console.log(movies);
 
   //get a random movie from the list each time
   const movie = movies[Math.floor(Math.random() * movies.length)];
