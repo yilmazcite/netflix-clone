@@ -24,26 +24,31 @@ const Row = ({ title, fetchURL, rowID }) => {
     slider.scrollLeft = slider.scrollLeft + 500;
   };
 
+  //styles
+  const styleRightArrowIcon =
+    "bg-white right-0 rounded-full absolute opacity-50 hover:opacity-100 cursor-pointer z-10 hidden group-hover:block";
+  const styleLeftArrowIcon =
+    "bg-white left-0 rounded-full absolute opacity-50 hover:opacity-100 cursor-pointer z-10 hidden group-hover:block";
+  const styleSlider =
+    "w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative";
+
   return (
     <>
       <h2 className="text-white font-bold md:text-xl p-4">{title}</h2>
       <div className="relative flex items-center group">
         <MdChevronLeft
           onClick={slideLeft}
-          className="bg-white left-0 rounded-full absolute opacity-50 hover:opacity-100 cursor-pointer z-10 hidden group-hover:block"
+          className={styleLeftArrowIcon}
           size={40}
         />
-        <div
-          className="w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative"
-          id={"slider" + rowID}
-        >
+        <div className={styleSlider} id={"slider" + rowID}>
           {movies.map((item, i) => {
             return <Movie key={i} item={item} />;
           })}
         </div>
         <MdChevronRight
           onClick={slideRight}
-          className="bg-white right-0 rounded-full absolute opacity-50 hover:opacity-100 cursor-pointer z-10 hidden group-hover:block"
+          className={styleRightArrowIcon}
           size={40}
         />
       </div>
