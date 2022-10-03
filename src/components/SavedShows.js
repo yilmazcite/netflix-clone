@@ -40,24 +40,31 @@ const SavedShows = () => {
     }
   };
 
+  //styles
+  const styleRightArrowIcon =
+    "bg-white right-0 rounded-full absolute opacity-50 hover:opacity-100 cursor-pointer z-10 hidden group-hover:block";
+  const styleLeftArrowIcon =
+    "bg-white left-0 rounded-full absolute opacity-50 hover:opacity-100 cursor-pointer z-10 hidden group-hover:block";
+  const styleSlider =
+    "w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative";
+  const styleCloseIcon = "absolute top-4 right-4 text-gray-300";
+  const styleMovieTitle =
+    "white-space-normal text-xs md:text-sm font-bold flex justify-center items-center h-full text-center";
+  const styleMovieOverlay =
+    "absolute top-0 left-0 w-full h-full hover:bg-black/80 opacity-0 hover:opacity-100 text-white";
+  const styleMainCategoryContainer =
+    "w-[10rem] sm:w-[12.5rem] md:w-[15rem] lg:w-[17.5rem] inline-block cursor-pointer relative p-2";
+
   const renderSavedShows = movies.map((item) => (
-    <div
-      key={item.id}
-      className="w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block cursor-pointer relative p-2"
-    >
+    <div key={item.id} className={styleMainCategoryContainer}>
       <img
         className="w-full h-auto block"
         src={`https://image.tmdb.org/t/p/w500/${item?.img}`}
         alt={item?.title}
       />
-      <div className="absolute top-0 left-0 w-full h-full hover:bg-black/80 opacity-0 hover:opacity-100 text-white">
-        <p className="white-space-normal text-xs md:text-sm font-bold flex justify-center items-center h-full text-center">
-          {item?.title}
-        </p>
-        <p
-          onClick={() => deleteShow(item.id)}
-          className="absolute text-gray-300 top-4 right-4"
-        >
+      <div className={styleMovieOverlay}>
+        <p className={styleMovieTitle}>{item?.title}</p>
+        <p onClick={() => deleteShow(item.id)} className={styleCloseIcon}>
           <AiOutlineClose />
         </p>
       </div>
@@ -70,18 +77,15 @@ const SavedShows = () => {
       <div className="relative flex items-center group">
         <MdChevronLeft
           onClick={slideLeft}
-          className="bg-white left-0 rounded-full absolute opacity-50 hover:opacity-100 cursor-pointer z-10 hidden group-hover:block"
+          className={styleLeftArrowIcon}
           size={40}
         />
-        <div
-          id={"slider"}
-          className="w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative"
-        >
+        <div id={"slider"} className={styleSlider}>
           {renderSavedShows}
         </div>
         <MdChevronRight
           onClick={slideRight}
-          className="bg-white right-0 rounded-full absolute opacity-50 hover:opacity-100 cursor-pointer z-10 hidden group-hover:block"
+          className={styleRightArrowIcon}
           size={40}
         />
       </div>
